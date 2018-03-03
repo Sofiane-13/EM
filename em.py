@@ -20,30 +20,30 @@ data = []
 #  =LOI.NORMALE.INVERSE(A14;1,5;0,01)
 # On doit chercher l'equivalent de ces 2 lois en python !
 
-i=0
-while i < 7:
-    liste.append(np.random.random())
-    i=i+1
-    continue
+# i=0
+# while i < 7:
+#     liste.append(np.random.random())
+#     i=i+1
+#     continue
 
-i=0
-while i < 7:
-    premLois.append(stats.norm.ppf(liste[i], loc=1.5, scale= 0.01))
-    i=i+1
-    continue
+# i=0
+# while i < 7:
+#     premLois.append(stats.norm.ppf(liste[i], loc=1.5, scale= 0.01))
+#     i=i+1
+#     continue
     
-i=0
-while i < 6:
-    deuxLois.append(stats.norm.ppf(liste[i], loc=1.7, scale= 0.01))
-    i=i+1
-    continue
-i=0
-while i < 3:
-    troiLois.append(stats.norm.ppf(liste[i], loc=1.9, scale= 0.01))
-    i=i+1
-    continue
+# i=0
+# while i < 6:
+#     deuxLois.append(stats.norm.ppf(liste[i], loc=1.7, scale= 0.01))
+#     i=i+1
+#     continue
+# i=0
+# while i < 3:
+#     troiLois.append(stats.norm.ppf(liste[i], loc=1.9, scale= 0.01))
+#     i=i+1
+#     continue
 
-data=premLois+deuxLois+troiLois
+# data=premLois+deuxLois+troiLois
 
 # loi1(1.6,0.1) loi2(1.7,0.3) loi3(1.8,0.2) suposition !  ph1=1/3 phi2=1/3 phi3=1/3
 Mu1=1.6 
@@ -56,29 +56,46 @@ phi1=0.33333333
 phi2=0.33333333
 phi3=0.33333333
 
+data.append(1.5119094639)
+data.append(1.5076268718)
+data.append(1.4994061858)
+data.append(1.5009503138)
+data.append(1.5027338268)
+data.append(1.4962672826)
+data.append(1.4930311227)
+data.append(1.7119094639)
+data.append(1.7076268718)
+data.append(1.6994061858)
+data.append(1.7009503138)
+data.append(1.7027338268)
+data.append(1.6962672826)
+data.append(1.9119094639)
+data.append(1.9076268718)
+data.append(1.8994061858)
+
 
 j=0
-while j < 10:    
+while j < 4:    
 #P X/N   
     # prob X/N1
     
     i=0
     while i < 16:
-        PXsachN1.append(float(stats.norm.cdf(data[i], loc=Mu1, scale= Sig1)))
+        PXsachN1.append(float(stats.norm.pdf(data[i], loc=Mu1, scale= Sig1)))
         i=i+1
         continue
 
         # prob X/N2
     i=0
     while i < 16:
-        PXsachN2.append(float(stats.norm.cdf(data[i], loc=Mu2, scale= Sig2)))
+        PXsachN2.append(float(stats.norm.pdf(data[i], loc=Mu2, scale= Sig2)))
         i=i+1
         continue
 
         # prob X/N3
     i=0
     while i < 16:
-        PXsachN3.append(float((stats.norm.cdf(data[i], loc=Mu3, scale= Sig3))))
+        PXsachN3.append(float((stats.norm.pdf(data[i], loc=Mu3, scale= Sig3))))
         i=i+1
         continue
     #P N/X
@@ -180,11 +197,26 @@ while j < 10:
     phi1=Sommeproba1/(Sommeproba1+Sommeproba2+Sommeproba3)
     phi2=Sommeproba2/(Sommeproba1+Sommeproba2+Sommeproba3)
     phi3=Sommeproba3/(Sommeproba1+Sommeproba2+Sommeproba3)
-
+   
+    
+    PXsachN1[:] = []
+    PXsachN2[:] = []
+    PXsachN3[:] = []
+    PN1sachX[:] = []
+    PN2sachX[:] = []
+    PN3sachX[:] = []
+    Erreur1[:] = []
+    Erreur2[:] = []
+    Erreur3[:] = []
     j=j+1
     continue
 
-# print(liste)
+     
+# print(data)
+# print("----------------------------------------")     
+# print(Sig1)
+# print("----------------------------------------")     
+#print(PXsachN1)
 
 print("Mu1 :")
 print(Mu1)
@@ -200,4 +232,3 @@ print("Mu3 :")
 print(Mu3)
 print("Sig3 :")
 print(Sig3)
-
